@@ -5,9 +5,9 @@ Seguir este padrão garante **organização, rastreabilidade e colaboração efi
 
 ---
 
-# 🧭 Tutorial Completo — Git Flow do Início ao Fim
+## 🧭 Tutorial Completo — Git Flow do Início ao Fim
 
-## 🧩 1. O que é Git Flow
+### 🧩 1. O que é Git Flow
 
 O **Git Flow** é um modelo de ramificação (branching model) criado para organizar o ciclo de vida do desenvolvimento, dividindo o trabalho em **fases claras** e **tipos de branch** específicos:
 
@@ -21,7 +21,7 @@ O **Git Flow** é um modelo de ramificação (branching model) criado para organ
 
 ---
 
-## ⚙️ 2. Inicializando o Git Flow
+### ⚙️ 2. Inicializando o Git Flow
 
 No terminal, dentro do repositório Git:
 
@@ -29,7 +29,7 @@ No terminal, dentro do repositório Git:
 git flow init
 ```
 
-### Durante o `init`, o Git Flow pergunta:
+#### Durante o `init`, o Git Flow pergunta:
 
 | Pergunta | Resposta recomendada |
 |-----------|----------------------|
@@ -45,11 +45,11 @@ git flow init
 
 ---
 
-## 🚀 3. Criando uma Feature (nova funcionalidade)
+### 🚀 3. Criando uma Feature (nova funcionalidade)
 
 > Exemplo: “Tela de cadastro de cliente”
 
-### Com Git Flow CLI
+#### Com Git Flow CLI
 ```bash
 git flow feature start cadastro-cliente
 ```
@@ -76,7 +76,7 @@ git push origin feature/cadastro-cliente
 
 ---
 
-## 🧪 4. Criando uma Release (preparar versão para produção)
+### 🧪 4. Criando uma Release (preparar versão para produção)
 
 Quando a `develop` estiver estável e pronta para virar uma versão:
 ```bash
@@ -105,7 +105,7 @@ git push origin main develop --tags
 
 ---
 
-## 🔥 5. Criando um Hotfix (correção urgente em produção)
+### 🔥 5. Criando um Hotfix (correção urgente em produção)
 
 Quando há um bug grave **em produção**, não espere a próxima release!
 
@@ -137,7 +137,7 @@ git push origin main develop --tags
 
 ---
 
-## 🧰 6. Fluxo Resumido com Git Flow CLI
+### 🧰 6. Fluxo Resumido com Git Flow CLI
 
 | Etapa | Comando | Resultado |
 |--------|----------|-----------|
@@ -151,7 +151,7 @@ git push origin main develop --tags
 
 ---
 
-## 🌍 7. Enviando para o repositório remoto
+### 🌍 7. Enviando para o repositório remoto
 
 Após finalizar qualquer etapa:
 ```bash
@@ -167,7 +167,7 @@ git push origin release/1.0.0
 
 ---
 
-## 🧭 8. Dica de fluxo no GitHub
+### 🧭 8. Dica de fluxo no GitHub
 
 Mesmo com Git Flow, muitos times usam **Pull Requests (PRs)** para revisão de código.  
 Você pode combinar os dois:
@@ -185,7 +185,7 @@ Você pode combinar os dois:
 
 ---
 
-## 🧩 9. Exemplo visual simplificado
+### 🧩 9. Exemplo visual simplificado
 
 ```
 main
@@ -201,7 +201,7 @@ develop
 
 ---
 
-## 🏁 10. Dica bônus — Convenções de commits
+### 🏁 10. Dica bônus — Convenções de commits
 
 Use [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/):
 
@@ -214,20 +214,11 @@ Use [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/):
 
 ---
 
-## ✅ Conclusão
-
-O **Git Flow** ajuda a manter:
-- Desenvolvimento organizado  
-- Releases controladas  
-- Correções urgentes rápidas  
-- Histórico limpo e rastreável  
-
 📘 **Dica:** adicione este arquivo ao repositório como `GIT_FLOW_TUTORIAL.md` ou `docs/gitflow.md` para referência da
 
 ### 📚 Documentação
 
 > Fonte: [Alura - Git Flow: o que é, como e quando utilizar](https://www.alura.com.br/artigos/git-flow-o-que-e-como-quando-utilizar?srsltid=AfmBOopzMECBzXZi4B-MMtz8-B8bNHIHBJoJKSa13qdjOf5RextEvvSo)
->  
 ---
 
 ## 🧩 Convenção de Commits
