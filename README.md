@@ -187,17 +187,7 @@ Você pode combinar os dois:
 
 ### 🧩 9. Exemplo visual simplificado
 
-```
-main
- ├── v1.0.0
- ├─── hotfix/v1.0.1
- │     └── v1.0.1
-develop
- ├── feature/login
- ├── feature/cadastro
- └── release/1.1.0
-       └── v1.1.0
-```
+<img width="905" height="380" alt="image" src="https://github.com/user-attachments/assets/51437f88-d592-41e8-88be-e4f765020f0e" />
 
 ---
 
