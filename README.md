@@ -5,70 +5,224 @@ Seguir este padrão garante **organização, rastreabilidade e colaboração efi
 
 ---
 
-## 📦 Estrutura de Branches (Git Flow)
+# 🧭 Tutorial Completo — Git Flow do Início ao Fim
 
-O projeto utiliza o **modelo Git Flow** para organizar o ciclo de vida do código.
+## 🧩 1. O que é Git Flow
 
-### 🌱 Branches principais
+O **Git Flow** é um modelo de ramificação (branching model) criado para organizar o ciclo de vida do desenvolvimento, dividindo o trabalho em **fases claras** e **tipos de branch** específicos:
 
-| Branch | Função | Observação |
-|--------|--------|-------------|
-| `main` | Código estável e pronto para produção | Recebe merges das releases e hotfixes |
-| `develop` | Código em desenvolvimento | Integra as features antes de ir para produção |
-
-### 🌿 Branches secundárias
-
-| Tipo | Origem | Objetivo | Exemplo |
-|------|---------|-----------|----------|
-| `feature` | `develop` | Nova funcionalidade | `feature/cadastro-cliente` |
-| `release` | `develop` | Preparar versão para produção | `release/1.0.0` |
-| `hotfix` | `main` | Correção urgente em produção | `hotfix/corrigir-login` |
+| Tipo de Branch | Função Principal |
+|----------------|-----------------|
+| `main` | Contém o código em produção (versões estáveis). |
+| `develop` | Contém o código em desenvolvimento (base para novas features). |
+| `feature/*` | Usada para desenvolver novas funcionalidades. |
+| `release/*` | Usada para preparar uma versão antes do deploy. |
+| `hotfix/*` | Usada para corrigir problemas urgentes em produção. |
 
 ---
 
-## 🔄 Fluxo Git Flow na Prática
+## ⚙️ 2. Inicializando o Git Flow
 
-### Imagem na prática
-
-<img width="905" height="380" alt="image" src="https://github.com/user-attachments/assets/a36c4d8c-ff7b-454b-ab95-626e48b6a3bd" />
-
----
-
-### 💡 Exemplo de fluxo completo
+No terminal, dentro do repositório Git:
 
 ```bash
-# 1. Criar branch de feature
-git checkout develop
-git checkout -b feature/cadastro-cliente
+git flow init
+```
 
-# 2. Fazer commits
+### Durante o `init`, o Git Flow pergunta:
+
+| Pergunta | Resposta recomendada |
+|-----------|----------------------|
+| Branch de produção? | `main` |
+| Branch de desenvolvimento? | `develop` |
+| Prefixo para feature branches? | `feature/` |
+| Prefixo para release branches? | `release/` |
+| Prefixo para hotfix branches? | `hotfix/` |
+| Prefixo para support branches? | (deixe vazio, pressione Enter) |
+| Prefixo de tags de versão? | `v` |
+
+🔹 Isso cria automaticamente uma branch `develop` a partir da `main`.
+
+---
+
+## 🚀 3. Criando uma Feature (nova funcionalidade)
+
+> Exemplo: “Tela de cadastro de cliente”
+
+### Com Git Flow CLI
+```bash
+git flow feature start cadastro-cliente
+```
+
+> Isso cria e muda automaticamente para a branch `feature/cadastro-cliente`.
+
+Faça suas alterações e commits:
+```bash
 git add .
-git commit -m "feat: implementar tela de cadastro de clientes"
+git commit -m "feat: implementar tela de cadastro de cliente"
+```
 
-# 3. Subir branch para o repositório remoto
+Quando terminar a feature:
+```bash
+git flow feature finish cadastro-cliente
+```
+
+> Isso mescla a feature na `develop` e apaga a branch local.
+
+Se quiser enviar ao repositório remoto antes de finalizar:
+```bash
 git push origin feature/cadastro-cliente
-
-# 4. Abrir Pull Request no GitHub
-# Título: feat: implementar cadastro de cliente
-# Descrição: Closes #12
-
-# 5. Após aprovação
-git checkout develop
-git merge feature/cadastro-cliente
-git push origin develop
-
-# 6. Criar release quando estiver pronto para deploy
-git checkout -b release/1.0.0
-git push origin release/1.0.0
-
-# 7. Testar, corrigir e publicar versão estável
-git checkout main
-git merge release/1.0.0
-git tag -a v1.0.0 -m "Versão estável 1.0.0"
-git push origin main --tags
 ```
 
 ---
+
+## 🧪 4. Criando uma Release (preparar versão para produção)
+
+Quando a `develop` estiver estável e pronta para virar uma versão:
+```bash
+git flow release start 1.0.0
+```
+
+Faça ajustes finais, correções e commits:
+```bash
+git add .
+git commit -m "chore: ajustes finais para versão 1.0.0"
+```
+
+Finalize a release:
+```bash
+git flow release finish 1.0.0
+```
+
+👉 O que acontece:
+- O Git Flow faz **merge da release em `main`** e **em `develop`**.
+- Cria uma **tag `v1.0.0`** (ou `1.0.0`, se você deixou o prefixo vazio).
+
+Por fim:
+```bash
+git push origin main develop --tags
+```
+
+---
+
+## 🔥 5. Criando um Hotfix (correção urgente em produção)
+
+Quando há um bug grave **em produção**, não espere a próxima release!
+
+Crie o hotfix:
+```bash
+git flow hotfix start v1.0.1
+```
+
+Corrija o problema e faça o commit:
+```bash
+git add .
+git commit -m "fix: corrigir erro de login em produção"
+```
+
+Finalize:
+```bash
+git flow hotfix finish v1.0.1
+```
+
+👉 Isso:
+- Faz merge do hotfix na `main` (produção).
+- Faz merge também na `develop` (para manter o código igual).
+- Cria uma tag `v1.0.1`.
+
+Depois:
+```bash
+git push origin main develop --tags
+```
+
+---
+
+## 🧰 6. Fluxo Resumido com Git Flow CLI
+
+| Etapa | Comando | Resultado |
+|--------|----------|-----------|
+| Iniciar fluxo | `git flow init` | Configura `main`, `develop`, etc |
+| Nova funcionalidade | `git flow feature start nome` | Cria `feature/nome` |
+| Finalizar feature | `git flow feature finish nome` | Mescla em `develop` |
+| Criar release | `git flow release start 1.0.0` | Cria `release/1.0.0` |
+| Finalizar release | `git flow release finish 1.0.0` | Mescla em `main` + tag |
+| Criar hotfix | `git flow hotfix start v1.0.1` | Cria `hotfix/v1.0.1` |
+| Finalizar hotfix | `git flow hotfix finish v1.0.1` | Mescla em `main` + `develop` + tag |
+
+---
+
+## 🌍 7. Enviando para o repositório remoto
+
+Após finalizar qualquer etapa:
+```bash
+git push origin main develop --tags
+```
+
+Durante o desenvolvimento de uma feature ou release:
+```bash
+git push origin feature/nome
+# ou
+git push origin release/1.0.0
+```
+
+---
+
+## 🧭 8. Dica de fluxo no GitHub
+
+Mesmo com Git Flow, muitos times usam **Pull Requests (PRs)** para revisão de código.  
+Você pode combinar os dois:
+
+1. Criar a feature com:
+   ```bash
+   git flow feature start nome
+   ```
+2. Fazer commits, depois:
+   ```bash
+   git push origin feature/nome
+   ```
+3. Criar um **Pull Request** da branch `feature/nome` → `develop`.
+4. Após aprovação, fazer o `finish` localmente ou via merge no GitHub.
+
+---
+
+## 🧩 9. Exemplo visual simplificado
+
+```
+main
+ ├── v1.0.0
+ ├─── hotfix/v1.0.1
+ │     └── v1.0.1
+develop
+ ├── feature/login
+ ├── feature/cadastro
+ └── release/1.1.0
+       └── v1.1.0
+```
+
+---
+
+## 🏁 10. Dica bônus — Convenções de commits
+
+Use [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/):
+
+| Tipo | Descrição | Exemplo |
+|------|------------|---------|
+| `feat` | nova funcionalidade | `feat: adicionar cadastro de usuário` |
+| `fix` | correção de bug | `fix: corrigir erro de validação de email` |
+| `chore` | manutenção, build, configs | `chore: atualizar dependências` |
+| `refactor` | melhoria sem mudar comportamento | `refactor: simplificar método de login` |
+
+---
+
+## ✅ Conclusão
+
+O **Git Flow** ajuda a manter:
+- Desenvolvimento organizado  
+- Releases controladas  
+- Correções urgentes rápidas  
+- Histórico limpo e rastreável  
+
+📘 **Dica:** adicione este arquivo ao repositório como `GIT_FLOW_TUTORIAL.md` ou `docs/gitflow.md` para referência da
 
 ### 📚 Documentação
 
