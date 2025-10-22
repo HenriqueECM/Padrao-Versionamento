@@ -219,3 +219,32 @@ Mensagem de erro é exibida.
 ```
 git pull --rebase origin develop
 ```
+
+## 🚀 Exemplo de Pull Request
+
+### Titulo:
+```
+feat: implementar busca de produtos por nome
+```
+
+### Descrição
+```
+Implementa a funcionalidade de busca por nome no módulo de produtos.
+Inclui validações, testes unitários e integração com o banco de dados.
+
+Closes #7 -> número da issue que ira fechar
+```
+
+---
+
+## 🏁 Conclusão
+
+Seguindo este guia:
+
+- O histórico do projeto será limpo e compreensível;
+
+- As versões terão rastreabilidade clara;
+
+- As contribuições seguirão um padrão profissional.
+
+💙 Mantenha o fluxo, escreva bons commits e versionar será seu melhor aliado!
