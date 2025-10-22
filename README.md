@@ -214,8 +214,6 @@ Use [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/):
 
 ---
 
-📘 **Dica:** adicione este arquivo ao repositório como `GIT_FLOW_TUTORIAL.md` ou `docs/gitflow.md` para referência da
-
 ### 📚 Documentação
 
 > Fonte: [Alura - Git Flow: o que é, como e quando utilizar](https://www.alura.com.br/artigos/git-flow-o-que-e-como-quando-utilizar?srsltid=AfmBOopzMECBzXZi4B-MMtz8-B8bNHIHBJoJKSa13qdjOf5RextEvvSo)
